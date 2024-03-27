@@ -1,4 +1,5 @@
 const UserModel = require('../models/User')
+const hashPassword = require('../Password/passwordHashing')
 
 const registerController = async(req,res) => {
     try {
@@ -35,7 +36,9 @@ const registerController = async(req,res) => {
                 message: 'User alredy exist'
             })
         }
-        const user = await UserModel({name,email,password,gender}).save()
+        const securePassword = await hashPassword(password);
+        console.log(securePassword)
+        const user = await UserModel({name,email,password:securePassword,gender}).save()
        return  res.status(201).send({
             success: true,
             message: 'Registration Successfull'
