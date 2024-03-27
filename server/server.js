@@ -14,14 +14,9 @@ app.use(cors())
 app.use(express.json())
 app.use(morgan('dev'))
 
-const PORT = process.env.PORT || 8080
+app.use('/api/v1/auth',require('./routes/userRoutes'))
 
-app.get('',(req,res)=>{
-    res.status(200).json({
-        success : true,
-        message : 'Success'
-    })
-})
+const PORT = process.env.PORT || 8080
 
 app.listen(PORT,()=>{
     console.log(`Server started on port ${PORT}`);
