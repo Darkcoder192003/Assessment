@@ -12,7 +12,7 @@ const hashPassword =async(password)=>{
     }
 
 }
-const decryptPassword = async(password,hashedPassword)=>{
+module.exports = decryptPassword = async(password,hashedPassword)=>{
     try{
         return await bcrypt.compare(password,hashedPassword)
     }
