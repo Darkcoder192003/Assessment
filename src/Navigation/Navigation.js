@@ -3,16 +3,18 @@ import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from '../Login';
 import Regiter from '../Register';
-import Users from '../Users';
+import Homepage from '../Homepage';
+import ChangePassword from '../changepassword';
 
 
 const Stack = createNativeStackNavigator();
 const Navigation = () => {
   return (
     <Stack.Navigator>
-    {/* <Stack.Screen name="Home" component={Login} options={{headerShown: false}} /> */}
-    <Stack.Screen name="Notifications" component={Regiter} options={{headerShown: false}} />
-    {/* <Stack.Screen name="Users" component={Users} options={{headerShown: false}} /> */}
+    <Stack.Screen name="Login" component={Login} options={{headerShown: false}} />
+    <Stack.Screen name="Register" component={Regiter} options={{headerShown: false}} />
+    <Stack.Screen name="Homepage" component={Homepage} options={{headerShown: false}} />
+    <Stack.Screen name="ChangePassword" component={ChangePassword} options={{headerShown: false}} />
   </Stack.Navigator>
   )
 }

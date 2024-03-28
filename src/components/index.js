@@ -113,9 +113,9 @@ const AuthInputField = ({
     );
   };
 
-  const SubmitButton = ({text})=>{
+  const SubmitButton = ({text,handleSubmit})=>{
     return(
-     <TouchableOpacity style={styles.submitBtn}>
+     <TouchableOpacity style={styles.submitBtn} onPress={handleSubmit}>
      <Text style={styles.submitText}>
        {text}
      </Text>

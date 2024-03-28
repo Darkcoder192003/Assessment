@@ -37,11 +37,11 @@ const registerController = async(req,res) => {
             })
         }
         const securePassword = await hashPassword(password);
-        console.log(securePassword)
-        const user = await UserModel({name,email,password:securePassword,gender}).save()
+        const User = await UserModel({name,email,password:securePassword,gender}).save()
        return  res.status(201).send({
             success: true,
-            message: 'Registration Successfull'
+            message: 'Registration Successfull',
+            User
         })
     } catch (error) {
         console.log(`Error in registerController ${error}`);

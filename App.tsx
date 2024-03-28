@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import Navigation from './src/Navigation/Navigation';
+import { AuthProvider } from './src/context/contextApi';
 
 
 function App(): React.JSX.Element {
@@ -15,9 +16,11 @@ function App(): React.JSX.Element {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar/>
+      <StatusBar hidden/>
       <NavigationContainer>
+      <AuthProvider>
         <Navigation/>
+      </AuthProvider>
       </NavigationContainer>
     </SafeAreaView>
   );

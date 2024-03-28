@@ -145,7 +145,7 @@ const Regiter = ({ navigation }) => {
           }}>
           <Component.SubmitButton 
             text={'Submit'}
-            onPress={updateProfile}/>
+            handleSubmit={updateProfile}/>
         </View>
         <Pressable
           style={{
