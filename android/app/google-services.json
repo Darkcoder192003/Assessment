@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "803849952894",
+    "project_id": "react-native-assessment",
+    "storage_bucket": "react-native-assessment.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803849952894:android:b0d7d17a7ea2a93537022f",
+        "android_client_info": {
+          "package_name": "com.assessment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfhgrRinExFCn8FT6SHH1aCOqp-b03rEw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

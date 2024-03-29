@@ -29,7 +29,7 @@ export default Logout
 
 const styles = StyleSheet.create({
     submitBtn : {
-        height : 35,
+        height : 33,
         width : '80%',
         backgroundColor : '#394b7b',
         color : '#fff',

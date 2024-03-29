@@ -3,6 +3,7 @@ import {StyleSheet, View, ScrollView, Pressable, Image} from 'react-native';
 import React from 'react';
 import Component from '../components';
 import ChangePasswordModal from './changePasswordModal'
+import LinearGradient from 'react-native-linear-gradient';
 
 const ChangePassword = ({navigation}) => {
   const {
@@ -13,8 +14,13 @@ const ChangePassword = ({navigation}) => {
     loading,
     handleFformData,
   } = ChangePasswordModal();
-
   return (
+    <LinearGradient
+    style={{
+        flex:1,
+    }} 
+    colors={["#39B68D","#007260"]}
+    >
     <View style={{flex: 1, backgroundColor: '#FFFFFF'}}>
       <ScrollView style={{flex: 1}}>
         <View style={{ 
@@ -48,6 +54,7 @@ const ChangePassword = ({navigation}) => {
               onChangeText={value => handleFformData({name: 'password', value})}
               placeholder={'Old Password'}
               value={password}
+              secureTextEntry={true}
             />
             {isFormValid.password && (
               <Component.CustomText
@@ -68,6 +75,7 @@ const ChangePassword = ({navigation}) => {
               placeholder={'New Password'}
               onChangeText={value => handleFformData({name: 'newpassword', value})}
               value={newpassword}
+              secureTextEntry={true}
             />
             {isFormValid.newpassword && (
               <Component.CustomText
@@ -85,6 +93,7 @@ const ChangePassword = ({navigation}) => {
         </View>
       </ScrollView>
     </View>
+    </LinearGradient>
   );
 };
 

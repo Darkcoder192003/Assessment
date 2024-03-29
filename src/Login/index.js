@@ -4,6 +4,7 @@ import React from 'react';
 import { AuthContext } from '../context/contextApi';
 import Component from '../components';
 import LoginModal from './LoginModal'
+import LinearGradient from 'react-native-linear-gradient'
 
 const Login = ({navigation}) => {
   const {
@@ -16,7 +17,13 @@ const Login = ({navigation}) => {
   } = LoginModal();
 
   return (
-    <View style={{flex: 1, backgroundColor: '#FFFFFF'}}>
+    <LinearGradient
+    style={{
+        flex:1,
+    }} 
+    colors={["#39B68D","#007260"]}
+    >
+    <View style={{flex: 1}}>
       <ScrollView style={{flex: 1}}>
         <View style={{ 
           justifyContent: 'center',
@@ -28,8 +35,8 @@ const Login = ({navigation}) => {
           <View style={styles.container}>
             <Component.Spacer top={8} />
             <Component.CustomText
-              fontSize={24}
-              color={'#000000'}
+              fontSize={40}
+              color={'#FFF'}
               text={'Login'}
             />
           </View>
@@ -69,6 +76,7 @@ const Login = ({navigation}) => {
               placeholder={'Password'}
               onChangeText={value => handleFformData({name: 'password', value})}
               value={password}
+              secureTextEntry={true}
             />
             {isFormValid.password && (
               <Component.CustomText
@@ -84,11 +92,12 @@ const Login = ({navigation}) => {
             handleSubmit={handleSubmit}/>
           <Component.Spacer top={12} />
           <Pressable onPress={() => navigation.navigate('Register')}>
-            <Component.CustomText text={"Don't have an account? Register"} />
+            <Component.CustomText text={"Don't have an account? Register"} color={'white'} />
           </Pressable>
         </View>
       </ScrollView>
     </View>
+    </LinearGradient>
   );
 };
 

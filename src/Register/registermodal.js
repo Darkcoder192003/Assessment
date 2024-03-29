@@ -1,26 +1,26 @@
 import {useState,useContext} from 'react';
-import { AuthContext } from '../context/contextApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation, CommonActions} from '@react-navigation/native';
 import {Alert} from 'react-native';
-import axios from 'axios';
 
 
 export default function RegisterViewModel() {
-  const [state,setState] = useContext(AuthContext)
+  // const [state,setState] = useContext(AuthContext)
   const [loading, setLoading] = useState(false);
+  const [usertype, setUsertype] = useState('user'); 
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [show, setShow] = useState(false);
+  const [secretkey,setSecretkey] = useState(null)
   const [dropDownValue, setDropDownValue] = useState(null);
   const [isFormValid, setIsFormValid] = useState({
-    id: false,
     name: false,
     email: false,
     password: false,
     dropDownValue: false,
+    usertype: false
   }); 
     const dropdownOptions = [
       {label: 'Male', value: 'Male'},
@@ -31,13 +31,17 @@ export default function RegisterViewModel() {
   const handleFformData = event => {
     if (event.name === 'name') setName(event.value);
     if (event.name === 'email') setEmail(event.value);
-    if (event.name === 'id') setId(event.value);
+    if (event.name === 'usertype') setUsertype(event.value);
     if (event.name === 'password') setPassword(event.value);
     if (event.name === 'dropDownValue') setDropDownValue(event.value);
+    if (event.name === 'secretkey') setSecretkey(event.value);
   };
   const updateProfile = async () => {
-    console.log("Update")
     try {
+      if(usertype=='admin' && secretkey!= 'kuldeep'){
+        Alert.alert('Invalid Admin')
+        return;
+      }
       setLoading(true);
       let oldValues = isFormValid;
       if (
@@ -75,7 +79,6 @@ export default function RegisterViewModel() {
         oldValues.email ||
         oldValues.name ||
         oldValues.password ||
-        oldValues.id ||
         oldValues.dropDownValue
       )
        
@@ -84,7 +87,8 @@ export default function RegisterViewModel() {
         name : name,
         email : email,
         password : password,
-        gender: dropDownValue
+        gender: dropDownValue,
+        usertype: usertype
       }
       const url = 'http://10.0.2.2:8080/api/v1/auth/register'
       const response =await fetch(url,{
@@ -94,21 +98,21 @@ export default function RegisterViewModel() {
       })
       const json = await response.json();
 
-      setState(json)
+      // setState(json)
       if(json.success==false){
         Alert.alert(json.message)
         return;
       }
       await AsyncStorage.setItem('user',JSON.stringify(data));
+      await AsyncStorage.setItem('userToken', JSON.stringify(json.token));
     
       setLoading(false);
       navigation.dispatch(
         CommonActions.reset({
           index: 0,
-          routes: [{name: 'Homepage'}],
+          routes: [{name: 'Data'}],
         }),
       );
-      console.log('Regitered')
     } catch (error) {
       setLoading(false);
     }
@@ -128,5 +132,9 @@ export default function RegisterViewModel() {
     handleFformData,
     isFormValid,
     updateProfile,
+    usertype,
+    setUsertype,
+    secretkey,
+    setSecretkey
   };
 }

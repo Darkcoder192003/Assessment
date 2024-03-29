@@ -1,147 +1,99 @@
-import { StyleSheet, Text, View,ImageBackground,Image,TouchableOpacity,Dimensions,ScrollView } from 'react-native'
-import React, {useContext } from 'react'
-import { AuthContext } from '../context/contextApi';
+import { Image, StyleSheet, Text, View,Pressable } from 'react-native'
+import React from 'react'
 import LinearGradient from 'react-native-linear-gradient'
-import Logout from '../Logout';
-import ChangePasswordBtn from '../changepassword/changePasswordbtn';
+import Button from './Button'
+import {useNavigation, CommonActions} from '@react-navigation/native';
 
-const DeviceWidth = Dimensions.get('window').width;
-const DeviceHeight = Dimensions.get('window').height;
-
-const Homepage = ({navigation}) => {
-  const [state] = useContext(AuthContext)
-  const name = state.User.name
-  const email =state.User.email
-  const gender =state.User.gender
+const Homepage = () => {
+    const navigation = useNavigation();
   return (
-    <ScrollView style={{backgroundColor:"#1A2238"}}>
-      <ImageBackground
-      source={require('../assets/profile.jpg')}
-      style={{
-        height:0.45*DeviceHeight,
-      }
-      } 
-      >
-      <View style={{
-        flexDirection:'row',
-        justifyContent: 'space-between',
-        paddingEnd:20,
-        marginTop: 60,
-        alignItems: 'center'
-      }}>
-      </View>
-
-      <LinearGradient colors={["rgb(26,34,56)","transparent"]} style={{transform:[{rotate:'180deg'}],
-      position: 'absolute',
-      left :0,
-      bottom:0,
-      zIndex:1,
-      height: 0.16*DeviceHeight,
-      width : DeviceWidth
-      }}  >
-      <Text style={{
-        transform:[{rotate:"-180deg"}],
-        color: "#FFF",
-        fontSize : 50,
-        marginVertical:30,
-        alignSelf: 'center'
-      }}>
-      {name}
-      </Text>
-      </LinearGradient>
-      </ImageBackground>
-      <View
-      style={{
-        flexDirection: 'row',
-        alignItems : 'center',
-        justifyContent: 'space-around',
-        paddingHorizontal:35
-      }}
-      >
-      <View style={{alignItems:"center"}}>
-      <Text
-      style={{
-        fontSize:18,
-        color:"#FFF",
-        fontWeight:'bold'}}
-      >
-      {email}
-      </Text>
-      <Text
-      style={{
-        fontSize :18,
-        color: "#918998",
-        fontWeight: "bold"
-      }}
-      >
-      Email
-      </Text>
-      </View>
-      <View style={{alignItems:"center"}}>
-      <Text
-      style={{
-        fontSize:18,
-        color:"#FFF",
-        fontWeight:'bold'}}
-      >
-      {gender}
-      </Text>
-      <Text
-      style={{
-        fontSize :18,
-        color: "#918998",
-        fontWeight: "bold"
-      }}
-      >
-      Gender
-      </Text>
-      </View>
-      </View>
-      <View style={
-        {
-        flexDirection :'column',
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor : "#3f5388",
-        marginTop:30,
-        marginHorizontal:10,
-        borderRadius :10,
-        paddingHorizontal:5,
-        paddingVertical:5
-
-        }
-      }>
-      <Text
-      style={{
-        textAlign: 'center',
-        color: "#FFF",
-        fontSize :30,
-        fontWeight :"900"
-      }}
-      >About</Text>
-      <Text
-      style={{
-        color: "#FFF",
-        fontSize: 15,
-        paddingHorizontal :10
-      }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut unde non ullam provident natus. At expedita non nulla excepturi nihil, ut deleniti libero quae repudiandae eum, porro culpa voluptatibus commodi.</Text>
-      <Text
-      style={{
-        color: "#FFF",
-        fontSize: 15,
-        paddingHorizontal :10
-      }}>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint molestias, nemo tempora autem natus at. Aspernatur incidunt illum nesciunt cumque nam necessitatibus error amet adipisci a illo ab nihil cum, laborum magnam at aut quas quibusdam, ut libero consequuntur rem sunt veniam quam quasi? Quidem debitis harum nesciunt soluta illum.
-      </Text>
-
-      </View>
-      <Logout/>
-      <ChangePasswordBtn/>
-    </ScrollView>
-
+   <LinearGradient
+   style={{
+       flex:1
+   }}
+   colors={["#39B68D","#007260"]}
+   >
+   <View style={{flex:1
+   }}>
+   <Image
+   source={require('../assets/image1.jpeg')}
+   style={[styles.imgStyle,styles.img1]}/>
+   <Image
+   source={require('../assets/image2.jpeg')}
+   style={[styles.imgStyle,styles.img2]}/>
+   <Image
+   source={require('../assets/image3.jpeg')}
+   style={[styles.imgStyle,styles.img3]}/>
+   </View>
+   <View style={styles.container}>
+       <Text style={styles.text}>Let's Get</Text>
+       <Text style={styles.text}>Started</Text>
+   </View>
+   <View>
+       <Button/>
+   </View>
+   <Pressable
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginBottom:30
+          }}
+          onPress={() => navigation.navigate('Login')}>
+          <Text style={{fontSize:18,color: "#fff"}}>Already have an account? Login</Text>
+        </Pressable>
+   </LinearGradient>
   )
 }
 
 export default Homepage
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    imgStyle:{
+        height :100,
+        width :100,
+        borderRadius :15,
+    },
+    img1 :{
+        position :"absolute",
+        top :0,
+        left :110,
+        transform : [
+            {translateX :20},
+            {translateY :50},
+            {rotate : "-0deg"}
+        ]
+    },
+    img2 :{
+        height :200,
+        width :200,
+        position :"absolute",
+        top :100,
+        left :200,
+        transform : [
+            {translateX :20},
+            {translateY :50},
+            {rotate : "15deg"}
+        ]
+    },
+    img3 :{
+        position :"absolute",
+        top :45,
+        transform : [
+            {translateX :20},
+            {translateY :50},
+            {rotate : "-15deg"}
+        ]
+    },
+    container :{
+        paddingHorizontal:22,
+        position:"absolute",
+        top : 400,
+        width : "100%",
+    },
+    text:{
+        fontSize: 50,
+        fontWeight: 'bold',
+        color: "#FFF"
+    }
+
+})

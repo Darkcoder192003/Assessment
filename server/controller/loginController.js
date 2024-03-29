@@ -32,7 +32,6 @@ const loginController = async(req,res) =>{
               success : true,
               message : 'Login Successfully',
               token,
-              User,
           })
         
     } catch (error) {

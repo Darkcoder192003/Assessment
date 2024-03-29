@@ -47,7 +47,7 @@ const Spacer = ({top, left, bottom, right}) => {
 
   const StyleText = styled.Text`
   color: ${({color = '#4C5863'}) => color};
-  font-size: ${({fontSize = 16}) => fontSize}px;
+  font-size: ${({fontSize = 16}) => fontSize}px; 
 `;
 
   const CustomText = ({fontSize, text, color}) => {
@@ -90,6 +90,7 @@ const AuthInputField = ({
     width,
     height,
     color,
+    secureTextEntry,
     placeholderTextColor = "black",
   }) => {
     return (
@@ -109,6 +110,7 @@ const AuthInputField = ({
         paddingRight={paddingRight}
         paddingLeft={paddingLeft}
         paddingTop={paddingTop}
+        secureTextEntry={secureTextEntry}
       />
     );
   };
@@ -139,7 +141,9 @@ const styles = StyleSheet.create(
     submitBtn : {
       height : 55,
       width : '80%',
-      backgroundColor : '#159600',
+      borderColor:"#007260",
+      borderWidth:2,
+      backgroundColor: "#FFF",
       color : '#fff',
       borderRadius: 30,
       flex :1,
@@ -149,7 +153,7 @@ const styles = StyleSheet.create(
     },
     submitText : {
       fontSize : 22,
-      color : '#fff'
+      color : '#39B68D',
     }
   }
 )

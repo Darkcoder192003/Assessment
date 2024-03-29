@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation, CommonActions} from '@react-navigation/native';
 import {Alert} from 'react-native';
 import { ScreenStackHeaderBackButtonImage } from 'react-native-screens';
+import auth from '@react-native-firebase/auth';
 export default function LoginModal() {
   const [state,setState] = useContext(AuthContext)
   const [email, setEmail] = useState('');
@@ -27,7 +28,7 @@ export default function LoginModal() {
         oldValues = {...oldValues, companyId: true};
       } else if (companyId.length < 1) {
         oldValues = {...oldValues, companyId: true};
-      } else {
+      } else { 
         oldValues = {...oldValues, companyId: false};
       }
       if (!email) {
@@ -56,19 +57,19 @@ export default function LoginModal() {
         body: JSON.stringify({email,password})
       });
       const json = await response.json();
-      // console.log(json)
+      // console.log(json.token)
       setState(json)
-      await AsyncStorage.setItem('user',JSON.stringify(json));
-      await AsyncStorage.setItem('userToken', json.token);
       if(json.success==false){
         Alert.alert(json.message)
         return;
       }
+      await AsyncStorage.setItem('user',JSON.stringify(json));
+      await AsyncStorage.setItem('userToken', JSON.stringify(json.token));
       setIsLoading(false);
       navigation.dispatch(
         CommonActions.reset({
           index: 0,
-          routes: [{name: 'Homepage'}],
+          routes: [{name: 'Data'}],
         }),
       );
     } catch (err) {

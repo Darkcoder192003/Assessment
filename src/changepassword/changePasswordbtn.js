@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         marginTop:20
       },
       submitText : {
-        fontSize : 18,
+        fontSize : 20,
         color : '#fff',
         fontWeight:'900'
       }
